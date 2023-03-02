@@ -12,7 +12,8 @@ namespace Address_Book
             //AddContact.AddressBookMain.AddressBookMainMethod();
             //ExistingContact.Existing_Contact();
             //DeleteContact.Delete_Contact();
-            AddMultiplePerson.AddMultiple_Person();
+            //AddMultiplePerson.AddMultiple_Person();
+            AddMultipleAddress.AddMultiple_Address();
 
 
         }
