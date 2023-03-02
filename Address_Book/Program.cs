@@ -11,8 +11,8 @@ namespace Address_Book
             // CreateContacts.Contact contact = new CreateContacts.Contact();
             //AddContact.AddressBookMain.AddressBookMainMethod();
             //ExistingContact.Existing_Contact();
-            DeleteContact.Delete_Contact();
-
+            //DeleteContact.Delete_Contact();
+            AddMultiplePerson.AddMultiple_Person();
 
 
         }
