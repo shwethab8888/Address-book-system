@@ -16,6 +16,10 @@ namespace Address_Book
             private string v7;
             private string v8;
 
+            public Contact()
+            {
+            }
+
             public Contact(string v1, string v2, string v3, string v4, string v5, string v6, string v7, string v8)
             {
                 this.v1 = v1;
@@ -79,6 +83,11 @@ namespace Address_Book
             }
 
             internal IEnumerable<Contact> GetContacts()
+            {
+                throw new NotImplementedException();
+            }
+
+            internal void RemoveContact(Contact contact)
             {
                 throw new NotImplementedException();
             }
