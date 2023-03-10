@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static Address_Book.AddContact;
+using static Address_Book.AddressBookMain;
 
 namespace Address_Book
 {
@@ -16,7 +16,7 @@ namespace Address_Book
             static void Main(string[] args)
             {
                 // Create a dictionary to store the Address Books
-                Dictionary<string, AddressBook> addressBooks = new Dictionary<string, AddressBook>();
+                Dictionary<string, AddressBookMain> addressBooks = new Dictionary<string, AddressBookMain>();
 
                 // Loop to add multiple Address Books
                 while (true)
@@ -38,7 +38,7 @@ namespace Address_Book
                     }
 
                     // Create a new Address Book and add it to the dictionary
-                    AddressBook addressBook = new AddressBook();
+                    AddressBookMain addressBook = new AddressBookMain();
                     addressBooks[addressBookName] = addressBook;
 
                     Console.WriteLine($"Address Book '{addressBookName}' has been created.");
@@ -83,7 +83,7 @@ namespace Address_Book
                     string email = Console.ReadLine();
 
                     // Create a new Contact object
-                    Contact contact = new Contact(firstName, lastName, address, city, state, zip, phoneNumber, email);
+                    CreateContact contact = new CreateContact(firstName, lastName, address, city, state, zip, phoneNumber, email);
 
                     // Add the contact to the Address Book
                     addressBooks[addressBookName].AddContact(contact);

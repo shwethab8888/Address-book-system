@@ -1,21 +1,67 @@
-﻿using static Address_Book.AddContact;
+﻿using AddressBookManagement;
+using static Address_Book.AddressBook;
 
 namespace Address_Book
 {
-    internal class Program
+    public class Program
     {
-
-        static void Main(string[] args)
+       
+        public static void Main(string[] args)
         {
-            // Console.WriteLine("Welcome to Address Book System");
-            // CreateContacts.Contact contact = new CreateContacts.Contact();
+            CreateContact.Create_Contact();
+
+            // string CreateContacts = Console.ReadLine();
+            //Console.WriteLine(CreateContacts);
+            //AddressBook addressBook = new AddressBook();
+
+            //Console.WriteLine("Enter contact details:");
+
+            //ContactPerson contact = new ContactPerson();
+
+            //Console.Write("First Name: ");
+            //contact.FirstName = Console.ReadLine();
+
+            //Console.Write("Last Name: ");
+            //contact.LastName = Console.ReadLine();
+
+            //Console.Write("Address: ");
+            //contact.Address = Console.ReadLine();
+
+            //Console.Write("City: ");
+            //contact.City = Console.ReadLine();
+
+            //Console.Write("State: ");
+            //contact.State = Console.ReadLine();
+
+            //Console.Write("Zip: ");
+            //contact.Zip = Console.ReadLine();
+
+            //Console.Write("Phone: ");
+            //contact.Phone = Console.ReadLine();
+
+            //Console.Write("Email: ");
+            //contact.Email = Console.ReadLine();
+
+            //addressBook.AddContact(contact);
+
+            //Console.WriteLine("Contact added successfully!");
+
+            //List<ContactPerson> contacts = addressBook.GetContacts();
+            //Console.WriteLine("Total contacts: " + contacts.Count);
+
+
+
             //AddContact.AddressBookMain.AddressBookMainMethod();
             //ExistingContact.Existing_Contact();
             //DeleteContact.Delete_Contact();
             //AddMultiplePerson.AddMultiple_Person();
-            AddMultipleAddress.AddMultiple_Address();
+            //AddMultipleAddress.AddMultiple_Address();
+
 
 
         }
+         
+
     }
+    
 }
