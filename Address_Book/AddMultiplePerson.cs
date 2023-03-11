@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,56 +8,7 @@ namespace Address_Book
 {
     public class AddMultiplePerson
     {
-        public static void AddMultiple_Person()
-
-        {
-            static void Main(string[] args)
-            {
-                List<Contact> contacts = new List<Contact>();
-
-                while (true)
-                {
-                    Console.WriteLine("Enter a person's details to add to the address book (or type 'exit' to quit):");
-                    Console.Write("First name: ");
-                    string firstName = Console.ReadLine();
-
-                    if (firstName.ToLower() == "exit")
-                    {
-                        break;
-                    }
-
-                    Console.Write("Last name: ");
-                    string lastName = Console.ReadLine();
-                    Console.Write("Address: ");
-                    string address = Console.ReadLine();
-                    Console.Write("City: ");
-                    string city = Console.ReadLine();
-                    Console.Write("State: ");
-                    string state = Console.ReadLine();
-                    Console.Write("Zip code: ");
-                    string zip = Console.ReadLine();
-                    Console.Write("Phone number: ");
-                    string phone = Console.ReadLine();
-                    Console.Write("Email: ");
-                    string email = Console.ReadLine();
-
-                    Contact contact = new Contact(firstName, lastName, address, city, state, zip, phone, email);
-                    contacts.Add(contact);
-
-                    Console.WriteLine("Contact added to the address book.");
-                }
-
-                Console.WriteLine("\nAll contacts in the address book:");
-                foreach (Contact contact in contacts)
-                {
-                    Console.WriteLine(contact);
-                }
-
-                Console.ReadLine();
-            }
-        }
-
-        class Contact
+        public class ContactPerson
         {
             public string FirstName { get; set; }
             public string LastName { get; set; }
@@ -67,30 +18,96 @@ namespace Address_Book
             public string Zip { get; set; }
             public string Phone { get; set; }
             public string Email { get; set; }
+        }
 
-            public Contact(string firstName, string lastName, string address, string city, string state, string zip, string phone, string email)
+        public class AddressBook
+        {
+            private List<ContactPerson> contacts;
+
+            public AddressBook()
             {
-                FirstName = firstName;
-                LastName = lastName;
-                Address = address;
-                City = city;
-                State = state;
-                Zip = zip;
-                Phone = phone;
-                Email = email;
+                contacts = new List<ContactPerson>();
             }
 
-            public override string ToString()
+            public void AddContact(ContactPerson person)
             {
-                return FirstName + " " + LastName + "\n" +
-                       Address + "\n" +
-                       City + ", " + State + " " + Zip + "\n" +
-                       "Phone: " + Phone + "\n" +
-                       "Email: " + Email + "\n";
+                contacts.Add(person);
+            }
+
+            public bool RemoveContact(ContactPerson person)
+            {
+                return contacts.Remove(person);
+            }
+
+            public void PrintContacts()
+            {
+                Console.WriteLine("Address Book Contacts:");
+                foreach (var person in contacts)
+                {
+                    Console.WriteLine($"Name: {person.FirstName} {person.LastName}, Address: {person.Address}, City: {person.City}, State: {person.State}, Zip: {person.Zip}, Phone: {person.Phone}, Email: {person.Email}");
+                }
             }
         }
 
+        public class AddMultiple_Person
+        {
+            static void Main(string[] args)
+            {
+                AddressBook addressBook = new AddressBook();
 
+                Console.WriteLine("Add contacts to address book:");
+                while (true)
+                {
+                    Console.Write("First name (or 'quit' to finish adding): ");
+                    string firstName = Console.ReadLine();
+                    if (firstName == "quit")
+                    {
+                        break;
+                    }
+
+                    Console.Write("Last name: ");
+                    string lastName = Console.ReadLine();
+
+                    Console.Write("Address: ");
+                    string address = Console.ReadLine();
+
+                    Console.Write("City: ");
+                    string city = Console.ReadLine();
+
+                    Console.Write("State: ");
+                    string state = Console.ReadLine();
+
+                    Console.Write("Zip: ");
+                    string zip = Console.ReadLine();
+
+                    Console.Write("Phone: ");
+                    string phone = Console.ReadLine();
+
+                    Console.Write("Email: ");
+                    string email = Console.ReadLine();
+
+                    ContactPerson person = new ContactPerson
+                    {
+                        FirstName = firstName,
+                        LastName = lastName,
+                        Address = address,
+                        City = city,
+                        State = state,
+                        Zip = zip,
+                        Phone = phone,
+                        Email = email
+                    };
+
+                    addressBook.AddContact(person);
+                }
+
+                addressBook.PrintContacts();
+            }
+        }
     }
+
 }
+
+    
+
     
