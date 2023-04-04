@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 
 namespace Address_Book
-{
-
-            public class Contact
-            {
+{ 
+    public class Contact
+    {
                 public string FirstName { get; set; }
                 public string LastName { get; set; }
                 public string Address { get; set; }
@@ -49,7 +48,22 @@ namespace Address_Book
                         Console.WriteLine(contact.ToString());
                     }
                 }
-            }
+
+        internal void AddContact(ContactPerson person)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal List<ContactPerson> GetContacts()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal bool RemoveContact(ContactPerson personToDelete)
+        {
+            throw new NotImplementedException();
+        }
+    }
 
             public class AddressBookMain
             {

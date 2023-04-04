@@ -11,100 +11,191 @@ namespace Address_Book
     {
         public static void AddMultiple_Address()
         {
-  
-        
             static void Main(string[] args)
             {
-                // Create a dictionary to store the Address Books
-                Dictionary<string, AddressBookMain> addressBooks = new Dictionary<string, AddressBookMain>();
+                Dictionary<string, AddressBook> addressBooks = new Dictionary<string, AddressBook>();
 
-                // Loop to add multiple Address Books
                 while (true)
                 {
-                    Console.WriteLine("Enter a name for the new Address Book (or enter 'q' to quit):");
-                    string addressBookName = Console.ReadLine();
+                    Console.WriteLine("Select an option:");
+                    Console.WriteLine("1. Create a new address book");
+                    Console.WriteLine("2. Add a contact to an existing address book");
+                    Console.WriteLine("3. Remove a contact from an existing address book");
+                    Console.WriteLine("4. Print all contacts in an existing address book");
+                    Console.WriteLine("5. Quit");
 
-                    // Exit the loop if the user enters 'q'
-                    if (addressBookName == "q")
+                    Console.Write("Enter your choice (1-5): ");
+                    string choice = Console.ReadLine();
+
+                    switch (choice)
                     {
-                        break;
+                        case "1":
+                            Console.Write("Enter a name for the new address book: ");
+                            string addressBookName = Console.ReadLine();
+
+                            AddressBook newAddressBook = new AddressBook();
+                            addressBooks.Add(addressBookName, newAddressBook);
+
+                            Console.WriteLine($"Address book '{addressBookName}' created successfully.");
+                            break;
+
+                        case "2":
+                            Console.Write("Enter the name of the address book to add the contact to: ");
+                            string addBookName = Console.ReadLine();
+
+                            if (!addressBooks.ContainsKey(addBookName))
+                            {
+                                Console.WriteLine($"Address book '{addBookName}' not found.");
+                                break;
+                            }
+
+                            AddressBook addBook = addressBooks[addBookName];
+
+                            Console.Write("First name: ");
+                            string firstName = Console.ReadLine();
+
+                            Console.Write("Last name: ");
+                            string lastName = Console.ReadLine();
+
+                            Console.Write("Address: ");
+                            string address = Console.ReadLine();
+
+                            Console.Write("City: ");
+                            string city = Console.ReadLine();
+
+                            Console.Write("State: ");
+                            string state = Console.ReadLine();
+
+                            Console.Write("Zip: ");
+                            string zip = Console.ReadLine();
+
+                            Console.Write("Phone: ");
+                            string phone = Console.ReadLine();
+
+                            Console.Write("Email: ");
+                            string email = Console.ReadLine();
+
+                            ContactPerson newContact = new ContactPerson
+                            {
+                                FirstName = firstName,
+                                LastName = lastName,
+                                Address = address,
+                                City = city,
+                                State = state,
+                                Zip = zip,
+                                Phone = phone,
+                                Email = email
+                            };
+
+                            addBook.AddContact(newContact);
+
+                            Console.WriteLine("Contact added successfully.");
+                            break;
+                    
+
+                        case "3":
+                            Console.Write("Enter the name of the address book to remove the contact from: ");
+                            string removeBookName = Console.ReadLine();
+
+                            if (!addressBooks.ContainsKey(removeBookName))
+                            {
+                                Console.WriteLine($"Address book '{removeBookName}' not found.");
+                                break;
+                            }
+
+                            AddressBook removeBook = addressBooks[removeBookName];
+
+                            Console.Write("First name: ");
+                            string firstNameToRemove = Console.ReadLine();
+
+                            Console.Write("Last name: ");
+                            string lastNameToRemove = Console.ReadLine();
+
+                            Console.Write("Address: ");
+                            string addressToRemove = Console.ReadLine();
+
+                            Console.Write("City: ");
+                            string cityToRemove = Console.ReadLine();
+
+                            Console.Write("State: ");
+                            string stateToRemove = Console.ReadLine();
+
+                            Console.Write("Zip: ");
+                            string zipToRemove = Console.ReadLine();
+
+                            Console.Write("Phone: ");
+                            string phoneToRemove = Console.ReadLine();
+
+                            Console.Write("Email: ");
+                            string emailToRemove = Console.ReadLine();
+
+                            ContactPerson contactToRemove = new ContactPerson
+                            {
+                                FirstName = firstNameToRemove,
+                                LastName = lastNameToRemove,
+                                Address = addressToRemove,
+                                City = cityToRemove,
+                                State = stateToRemove,
+                                Zip = zipToRemove,
+                                Phone = phoneToRemove,
+                                Email = emailToRemove
+                            };
+
+                            bool contactRemoved = removeBook.RemoveContact(contactToRemove);
+
+                            if (contactRemoved)
+                            {
+                                
+                                Console.WriteLine("Enter the name of the address book to print: ");
+                                string printBookName = Console.ReadLine();
+
+                                if (!addressBooks.ContainsKey(printBookName))
+                                {
+                                    Console.WriteLine($"Address book '{printBookName}' not found.");
+                                    break;
+                                }
+
+                                AddressBook printBook = addressBooks[printBookName];
+
+                                List<ContactPerson> contacts = printBook.GetContacts();
+
+                                if (contacts.Count == 0)
+                                {
+                                    Console.WriteLine($"No contacts found in address book '{printBookName}'.");
+                                    break;
+                                }
+
+                                Console.WriteLine($"Contacts in address book '{printBookName}':");
+
+                                foreach (ContactPerson contact in contacts)
+                                {
+                                    Console.WriteLine($"  {contact.FirstName} {contact.LastName}");
+                                    Console.WriteLine($"    Address: {contact.Address}");
+                                    Console.WriteLine($"    City: {contact.City}");
+                                    Console.WriteLine($"    State: {contact.State}");
+                                    Console.WriteLine($"    Zip: {contact.Zip}");
+                                    Console.WriteLine($"    Phone: {contact.Phone}");
+                                    Console.WriteLine($"    Email: {contact.Email}");
+                                }
+
+                                break;
+                            }
+                            case "5":
+                            Console.WriteLine("Goodbye!");
+                            return;
+
+                        default:
+                            Console.WriteLine("Invalid option. Please try again.");
+                            break;
                     }
 
-                    // Check if the Address Book name already exists
-                    if (addressBooks.ContainsKey(addressBookName))
-                    {
-                        Console.WriteLine($"An Address Book with name '{addressBookName}' already exists. Please enter a different name.");
-                        continue;
-                    }
-
-                    // Create a new Address Book and add it to the dictionary
-                    AddressBookMain addressBook = new AddressBookMain();
-                    addressBooks[addressBookName] = addressBook;
-
-                    Console.WriteLine($"Address Book '{addressBookName}' has been created.");
-                }
-
-                // Loop to add contacts to an Address Book
-                while (true)
-                {
-                    Console.WriteLine("Enter the name of the Address Book to add a contact (or enter 'q' to quit):");
-                    string addressBookName = Console.ReadLine();
-
-                    // Exit the loop if the user enters 'q'
-                    if (addressBookName == "q")
-                    {
-                        break;
-                    }
-
-                    // Check if the Address Book exists
-                    if (!addressBooks.ContainsKey(addressBookName))
-                    {
-                        Console.WriteLine($"An Address Book with name '{addressBookName}' does not exist. Please enter a valid name.");
-                        continue;
-                    }
-
-                    // Prompt the user to enter the contact details
-                    Console.WriteLine("Enter the details of the contact:");
-                    Console.Write("First Name: ");
-                    string firstName = Console.ReadLine();
-                    Console.Write("Last Name: ");
-                    string lastName = Console.ReadLine();
-                    Console.Write("Address: ");
-                    string address = Console.ReadLine();
-                    Console.Write("City: ");
-                    string city = Console.ReadLine();
-                    Console.Write("State: ");
-                    string state = Console.ReadLine();
-                    Console.Write("Zip Code: ");
-                    string zip = Console.ReadLine();
-                    Console.Write("Phone Number: ");
-                    string phoneNumber = Console.ReadLine();
-                    Console.Write("Email: ");
-                    string email = Console.ReadLine();
-
-                    // Create a new Contact object
-                    CreateContact contact = new CreateContact(firstName, lastName, address, city, state, zip, phoneNumber, email);
-
-                    // Add the contact to the Address Book
-                    addressBooks[addressBookName].AddContact(contact);
-
-                    Console.WriteLine($"Contact '{firstName} {lastName}' has been added to the Address Book '{addressBookName}'.");
-                }
-
-                // Loop to print all the Address Books and their contacts
-                foreach (var addressBookEntry in addressBooks)
-                {
-                    Console.WriteLine($"Address Book '{addressBookEntry.Key}':");
-                    addressBookEntry.Value.PrintContacts();
                     Console.WriteLine();
                 }
 
-                Console.WriteLine("Press any key to exit.");
-                Console.ReadKey();
+
             }
         }
     }
-
 }
     
 

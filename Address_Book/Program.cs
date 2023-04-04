@@ -1,5 +1,10 @@
-﻿using AddressBookManagement;
-using static Address_Book.AddressBook;
+﻿
+using static Address_Book.AddressBookMain;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Address_Book
 {
@@ -8,7 +13,7 @@ namespace Address_Book
        
         public static void Main(string[] args)
         {
-            CreateContact.Create_Contact();
+            //CreateContact.Create_Contact();
 
             // string CreateContacts = Console.ReadLine();
             //Console.WriteLine(CreateContacts);
@@ -56,7 +61,7 @@ namespace Address_Book
             //DeleteContact.Delete_Contact();
             //AddMultiplePerson.AddMultiple_Person();
             //AddMultipleAddress.AddMultiple_Address();
-
+            NoDuplicateEntryAdressBook.NoDuplicateEntry_AddressBook();
 
 
         }
